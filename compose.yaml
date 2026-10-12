@@ -7,11 +7,13 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
       POSTGRES_DB: mydb
-      PGDATA: /var/lib/postgresql/data/pgdata
+      PRICING_DB_PASSWORD: $PRICING_DB_PASSWORD
+      QUOTE_DB_PASSWORD: $QUOTE_DB_PASSWORD
     ports:
       - "15432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql
+      - ./infra/postgres/init:/docker-entrypoint-initdb.d:ro
     shm_size: 256mb
     mem_limit: 256mb
     healthcheck:
@@ -21,4 +23,4 @@ services:
       retries: 3
 
 volumes:
-  pgdata:
+  pgdata: 
