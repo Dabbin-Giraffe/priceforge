@@ -12,9 +12,9 @@
 | --- | --- | --- | --- | --- |
 | PF-001 | Free disk space to at least 15 GB | M0 | 20 min | DONE |
 | PF-002 | Stop the global JVM heap override | M0 | 15 min | DONE |
-| PF-003 | First commit on main, without the planning prompt | M0 | 15 min | TODO |
-| PF-004 | Add .editorconfig and a LICENSE | M0 | 10 min | TODO |
-| PF-005 | Write the README skeleton | M0 | 20 min | TODO |
+| PF-003 | First commit on main, without the planning prompt | M0 | 15 min | DONE |
+| PF-004 | Add .editorconfig and a LICENSE | M0 | 10 min | DONE |
+| PF-005 | Write the README skeleton | M0 | 20 min | DONE |
 | PF-006 | Create the GitHub repo and push main | M0 | 25 min | TODO |
 | PF-007 | learn: Docker Compose spike | M1 | 25 min | TODO |
 | PF-008 | learn: PostgreSQL spike | M1 | 30 min | TODO |
