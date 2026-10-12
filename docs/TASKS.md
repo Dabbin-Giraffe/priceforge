@@ -15,11 +15,11 @@
 | PF-003 | First commit on main, without the planning prompt | M0 | 15 min | DONE |
 | PF-004 | Add .editorconfig and a LICENSE | M0 | 10 min | DONE |
 | PF-005 | Write the README skeleton | M0 | 20 min | DONE |
-| PF-006 | Create the GitHub repo and push main | M0 | 25 min | TODO |
-| PF-007 | learn: Docker Compose spike | M1 | 25 min | TODO |
-| PF-008 | learn: PostgreSQL spike | M1 | 30 min | TODO |
-| PF-009 | Add Postgres to compose.yaml | M1 | 25 min | TODO |
-| PF-010 | Create the pricing and quote databases on first start | M1 | 25 min | TODO |
+| PF-006 | Create the GitHub repo and push main | M0 | 25 min | DONE |
+| PF-007 | learn: Docker Compose spike | M1 | 25 min | DONE |
+| PF-008 | learn: PostgreSQL spike | M1 | 30 min | DONE |
+| PF-009 | Add Postgres to compose.yaml | M1 | 25 min | DONE |
+| PF-010 | Create the pricing and quote databases on first start | M1 | 25 min | DONE |
 | PF-011 | Checkpoint 1: foundation and database | M1 | 15 min | TODO |
 | PF-012 | learn: Maven multi-module spike | M2 | 25 min | TODO |
 | PF-013 | Add the parent POM and the Maven Wrapper | M2 | 25 min | TODO |

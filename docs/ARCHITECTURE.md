@@ -484,6 +484,11 @@ the container's.
   Each listener must advertise an address its own clients can reach.
 - **Startup order:** every service has a healthcheck, and dependants use
   `depends_on: condition: service_healthy`.
+- **Postgres data volume:** mount the named volume at `/var/lib/postgresql`, and don't set
+  `PGDATA`. From version 18, the image declares its volume at that path and keeps its data in
+  `/var/lib/postgresql/18/docker`. Mounting at the old path, `/var/lib/postgresql/data`, also
+  creates an anonymous volume, which is left behind after every `down` and `up` cycle. Source:
+  https://hub.docker.com/_/postgres ("PGDATA"), checked 2026-10-12.
 
 ### 12.2 Memory budget (C-3)
 
@@ -498,10 +503,10 @@ These are starting limits. Measure with `docker stats` and adjust them here when
 | quote-service | 448m | Same |
 | **Total** | **≈ 2.0 GB** | Leaves room for the OS, VS Code with Java tooling, and a browser on 7.3 GiB |
 
-- `/etc/profile` exports `_JAVA_OPTIONS=-Xmx3048m`. It overrides `-Xmx` on every JVM started from a
-  login shell (checked on 2026-10-11), so it must be unset for local Maven runs and local app
-  runs.
-- Containers don't inherit it.
+- `/etc/profile` used to export `_JAVA_OPTIONS=-Xmx3048m`, which overrode `-Xmx` on every JVM
+  started from a login shell. PF-002 commented it out on 2026-10-12, and `-Xmx` works again
+  (`-Xmx256m` gives `MaxHeapSize` = 268435456). If a local JVM seems to ignore `-Xmx`, check
+  `echo "${_JAVA_OPTIONS:-unset}"` first. Containers never inherited it.
 - The disk needs at least 15 GB free. The images are about 2 GB and the Maven repository about
   1 GB.
 
