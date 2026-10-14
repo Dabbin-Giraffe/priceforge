@@ -185,3 +185,38 @@ Each entry uses this format:
   - Leftover: the out-of-date `<!-- <modules> arrive … -->` comment is still on root `pom.xml`
     line 23. Not committed yet.
 - Blockers: none
+
+## 2026-10-14
+- Tasks: PF-015 (est 30 min, actual 25 min)
+- Notes:
+  - Checked by Claude on `103e6d1`:
+    - `./mvnw -B -DskipTests install` gives `BUILD SUCCESS` for PriceForge, `contracts` and
+      `pricing-service`
+    - the jar starts, and Tomcat runs on 8081
+    - `/actuator/health` returns `{"groups":["liveness","readiness"],"status":"UP"}`
+  - Three stacked mistakes; Maven reports only the first:
+    - The `<parent>` kept `org.springframework.boot` as groupId and an empty `<relativePath/>`,
+      which tells Maven to skip `../pom.xml`. Result: "Non-resolvable parent POM".
+    - The step 4 dependency went into `contracts/pom.xml` instead of `pricing-service/pom.xml`.
+    - Initializr's own `<version>0.0.1-SNAPSHOT</version>` stayed. `${project.version}` is the
+      current module's version, so the build looked for `contracts:0.0.1-SNAPSHOT`.
+  - An empty `<name/>` shows as a blank name in the Reactor Summary.
+  - Commit `103e6d1` went in with the message "WebApplicationContext" (not pushed; to be amended).
+    `contracts/pom.xml` was left with an empty `<dependencies>` block.
+  - Found: `LICENSE` is MIT, but every module's effective POM says "Apache License, Version 2.0"
+    and has a spring.io `<url>`. Both are inherited from `spring-boot-starter-parent` through the
+    root POM that Claude wrote in PF-013. Raised with Shashank.
+- Blockers: none
+
+## 2026-10-14
+- Tasks: PF-016 (est 25 min, skipped)
+- Notes:
+  - Shashank skipped the JUnit Jupiter and AssertJ spike. PF-017, PF-029 and PF-042 depend on it
+    and can proceed because it's SKIPPED.
+  - Its concepts come back in the project:
+    - `@Test` and AssertJ in PF-017
+    - the `BigDecimal` scale trap and `isEqualByComparingTo` in PF-023
+  - Not yet met in the project: `@ParameterizedTest` with `@CsvSource`, and the Surefire
+    class-name rule (`*Test`, `Test*`, `*Tests`, `*TestCase`).
+  - `103e6d1` was amended to `ffa11ad feat(pricing): add pricing-service walking skeleton`.
+- Blockers: none

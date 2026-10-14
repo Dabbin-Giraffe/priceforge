@@ -24,8 +24,8 @@
 | PF-012 | learn: Maven multi-module spike | M2 | 25 min | SKIPPED |
 | PF-013 | Add the parent POM and the Maven Wrapper | M2 | 25 min | DONE |
 | PF-014 | Add the contracts module with Segment and Category | M2 | 20 min | DONE |
-| PF-015 | Generate pricing-service and wire it in | M2 | 30 min | TODO |
-| PF-016 | learn: JUnit Jupiter and AssertJ spike | M2 | 25 min | TODO |
+| PF-015 | Generate pricing-service and wire it in | M2 | 30 min | DONE |
+| PF-016 | learn: JUnit Jupiter and AssertJ spike | M2 | 25 min | SKIPPED |
 | PF-017 | First test: the health endpoint says UP | M2 | 25 min | TODO |
 | PF-018 | learn: GitHub Actions spike in a throwaway repo | M8 | 25 min | TODO |
 | PF-019 | Add the CI workflow | M8 | 25 min | TODO |
