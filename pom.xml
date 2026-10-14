@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0" child.project.url.inherit.append.path="false"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -19,6 +19,32 @@
 
     <name>PriceForge</name>
     <description>Parent POM: shared versions and build configuration for all modules</description>
+
+    <!-- Project metadata: without these, every module inherits Spring Boot's
+         (Apache 2.0 license, spring.io URL, Spring as developer) from the Boot parent.
+         The append.path attributes (on <project> and <scm>) stop Maven adding
+         "/<artifactId>" to these URLs in each module. -->
+    <url>https://github.com/Dabbin-Giraffe/priceforge</url>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/license/MIT</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>Dabbin-Giraffe</id>
+            <name>Shashank Kathury</name>
+            <url>https://github.com/Dabbin-Giraffe</url>
+        </developer>
+    </developers>
+    <scm child.scm.url.inherit.append.path="false"
+         child.scm.connection.inherit.append.path="false"
+         child.scm.developerConnection.inherit.append.path="false">
+        <url>https://github.com/Dabbin-Giraffe/priceforge</url>
+        <connection>scm:git:https://github.com/Dabbin-Giraffe/priceforge.git</connection>
+        <developerConnection>scm:git:git@github.com:Dabbin-Giraffe/priceforge.git</developerConnection>
+    </scm>
 
     <!-- <modules> arrive with the first module, contracts (PF-014) -->
 
