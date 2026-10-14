@@ -1,7 +1,7 @@
 # PriceForge: Tasks
 
 > **This file owns** the backlog and is **the only place task status lives** (summary table
-> below). Statuses: TODO, IN-PROGRESS, DONE, BLOCKED. IDs are never renumbered; new tasks get the
+> below). Statuses: TODO, IN-PROGRESS, DONE, SKIPPED, BLOCKED. IDs are never renumbered; new tasks get the
 > next free ID and declare their dependencies. What and why: [SPEC.md](SPEC.md). How:
 > [ARCHITECTURE.md](ARCHITECTURE.md).
 
@@ -20,9 +20,9 @@
 | PF-008 | learn: PostgreSQL spike | M1 | 30 min | DONE |
 | PF-009 | Add Postgres to compose.yaml | M1 | 25 min | DONE |
 | PF-010 | Create the pricing and quote databases on first start | M1 | 25 min | DONE |
-| PF-011 | Checkpoint 1: foundation and database | M1 | 15 min | TODO |
-| PF-012 | learn: Maven multi-module spike | M2 | 25 min | TODO |
-| PF-013 | Add the parent POM and the Maven Wrapper | M2 | 25 min | TODO |
+| PF-011 | Checkpoint 1: foundation and database | M1 | 15 min | DONE |
+| PF-012 | learn: Maven multi-module spike | M2 | 25 min | SKIPPED |
+| PF-013 | Add the parent POM and the Maven Wrapper | M2 | 25 min | DONE |
 | PF-014 | Add the contracts module with Segment and Category | M2 | 20 min | TODO |
 | PF-015 | Generate pricing-service and wire it in | M2 | 30 min | TODO |
 | PF-016 | learn: JUnit Jupiter and AssertJ spike | M2 | 25 min | TODO |
@@ -188,7 +188,7 @@ dates leave slack for slow days.
 
 ## How to work
 
-- **Picking a task:** take the lowest-numbered TODO whose dependencies are all DONE. Say
+- **Picking a task:** take the lowest-numbered TODO whose dependencies are all DONE or SKIPPED. Say
   "start session" to Claude at the beginning and "done PF-xxx" when you finish.
 - **Timebox:** each card is designed for 30 minutes or less. At 45 minutes, stop and say
   "stuck PF-xxx", or finish and report the real time. Claude will then propose splitting similar

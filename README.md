@@ -11,9 +11,11 @@ PriceForge is a B2B pricing backend that works out the exact price for each quot
 
 ## How to Run
 
-1. Copy .env.example contents and paste into local .env file.
+1. Copy .env.example contents and paste into local .env file using command `cp .env.example .env`
 2. Add your secrets to corresponding variables in the .env file
-3. Run the command in terminal `docker compose down -v && docker compose up -d`
+3. Run the command in terminal `docker compose up -d`
+
+Deleting all local data : `docker compose down -v`
 
 ---
 ## Design Decisions

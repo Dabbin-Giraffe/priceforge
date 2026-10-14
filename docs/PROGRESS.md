@@ -121,3 +121,31 @@ Each entry uses this format:
     remove.
   - Not committed yet.
 - Blockers: none
+
+## 2026-10-12
+- Tasks: PF-011 (est 15 min, actual 10 min)
+- Notes:
+  - M1 complete: 120 min actual against 120 estimated. M0 and M1 together took 205 min against
+    225 estimated.
+  - Checkpoint verified by Claude: `docker compose up -d` from a clean state (no volume) comes up
+    healthy with `pricing` and `quote` owned by their roles. `main` (`322318c`) is pushed and
+    clean. No `.env` and no employer names are tracked.
+  - Follow-ups:
+    - README "How to Run" step 3 says `docker compose down -v && docker compose up -d`, which
+      wipes the local database on every run. Running should be `up -d`, with `down -v` only in a
+      separate reset step.
+    - Commit `e0d4e21 update progress docs` has no Conventional Commits type, and it carries
+      `infra/postgres/init/01-create-databases.sh`. So PF-010's own commit `9b86d2b` mounts an
+      init folder that doesn't exist yet. It's pushed, so it's left as is.
+- Blockers: none
+
+## 2026-10-13
+- Tasks: PF-012 (est 25 min, skipped)
+- Notes:
+  - Shashank skipped the Maven multi-module spike. Only an empty `pom.xml` was created in the
+    scratch folder.
+  - TASKS.md gained a SKIPPED status, so tasks that depend on PF-012 (PF-013) can proceed without
+    calling it DONE.
+  - The concepts it covered come back in the project: parent and `<modules>` in PF-013 and
+    PF-014, and `-pl … -am` in the standard commands (TASKS § How to work).
+- Blockers: none
