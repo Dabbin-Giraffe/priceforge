@@ -265,3 +265,19 @@ Each entry uses this format:
     - The effective POM shows MIT and the GitHub URLs in all three modules, and `./mvnw -B
       verify` still gives `BUILD SUCCESS`. Not committed.
 - Blockers: none
+
+## 2026-10-14
+- Tasks: PF-019 (est 25 min, actual 25 min)
+- Notes:
+  - Checked by Claude through GitHub's public API:
+    - run `ci #2` on `fd7b13d` is green
+    - checkout, setup-java and `./mvnw -B verify` all succeeded
+    - Maven exits 0 only on `BUILD SUCCESS`
+    - the job log itself needs a login (HTTP 403), so the "BUILD SUCCESS" line was not read
+      directly
+  - Run #1 (`12a84ef`) failed with no jobs, and showed up as `.github/workflows/ci.yml` instead
+    of `ci`: `on: [push, pull-request]` uses a hyphen, which isn't a valid event name, so the
+    file was invalid. Fixed in `fd7b13d ci: fix` (pushed). A run named after the file path is the
+    sign of an invalid workflow.
+  - Only the `push` trigger has run so far; `pull_request` gets its first run in PF-020.
+- Blockers: none
