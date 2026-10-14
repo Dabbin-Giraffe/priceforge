@@ -23,7 +23,7 @@
 | PF-011 | Checkpoint 1: foundation and database | M1 | 15 min | DONE |
 | PF-012 | learn: Maven multi-module spike | M2 | 25 min | SKIPPED |
 | PF-013 | Add the parent POM and the Maven Wrapper | M2 | 25 min | DONE |
-| PF-014 | Add the contracts module with Segment and Category | M2 | 20 min | TODO |
+| PF-014 | Add the contracts module with Segment and Category | M2 | 20 min | DONE |
 | PF-015 | Generate pricing-service and wire it in | M2 | 30 min | TODO |
 | PF-016 | learn: JUnit Jupiter and AssertJ spike | M2 | 25 min | TODO |
 | PF-017 | First test: the health endpoint says UP | M2 | 25 min | TODO |

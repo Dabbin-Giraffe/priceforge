@@ -149,3 +149,39 @@ Each entry uses this format:
   - The concepts it covered come back in the project: parent and `<modules>` in PF-013 and
     PF-014, and `-pl … -am` in the standard commands (TASKS § How to work).
 - Blockers: none
+
+## 2026-10-13
+- Tasks: PF-013 (est 25 min, actual not reported)
+- Notes:
+  - At Shashank's request, Claude wrote the root `pom.xml`. The docs don't set a project version,
+    so Claude chose `0.1.0-SNAPSHOT`.
+  - Shashank generated the wrapper. It's wrapper 3.3.4 with `distributionType=only-script`, so
+    there's no `maven-wrapper.jar`, and `mvnw` downloads Maven 3.10.0 into `~/.m2/wrapper/dists`
+    itself.
+  - Checked by Claude:
+    - `./mvnw -v` prints Maven 3.10.0 on Java 21.0.2
+    - `./mvnw -B validate` gives `BUILD SUCCESS`
+    - `mvnw` is `100755` in `73dae67`
+  - The README "How to Run" follow-up from PF-011 is fixed: run is `up -d`, and `down -v` is a
+    separate reset step. Not committed yet.
+- Blockers: none
+
+## 2026-10-14
+- Tasks: PF-014 (est 20 min, actual 25 min)
+- Notes:
+  - The first `contracts/pom.xml` was a copy of the root POM with the same coordinates. Maven
+    stops with "Project 'dev.priceforge:priceforge-parent:0.1.0-SNAPSHOT' is duplicated in the
+    reactor".
+  - `<module>some-folder</module>` was copied from Claude's placeholder, which gives "Child module
+    …/some-folder … does not exist".
+  - Edge cases worth remembering:
+    - Leaving a module out of `<modules>` still gives `BUILD SUCCESS`; Maven just never builds
+      it.
+    - `<module>` takes a folder path, not an artifactId.
+    - `name` isn't inherited from the parent, but `description` is: the effective POM of
+      `contracts` carries the parent's description.
+  - Checked by Claude: `./mvnw -B verify` gives `BUILD SUCCESS`, the Reactor Summary lists
+    `contracts`, and the jar contains `Segment.class` and `Category.class`.
+  - Leftover: the out-of-date `<!-- <modules> arrive … -->` comment is still on root `pom.xml`
+    line 23. Not committed yet.
+- Blockers: none

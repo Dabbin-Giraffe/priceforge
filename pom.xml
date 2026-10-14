@@ -24,6 +24,7 @@
 
     <modules>
         <module>contracts</module>
+        <module>pricing-service</module>
     </modules>
 
     <properties>
