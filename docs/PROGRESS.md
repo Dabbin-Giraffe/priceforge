@@ -220,3 +220,48 @@ Each entry uses this format:
     class-name rule (`*Test`, `Test*`, `*Tests`, `*TestCase`).
   - `103e6d1` was amended to `ffa11ad feat(pricing): add pricing-service walking skeleton`.
 - Blockers: none
+
+## 2026-10-14
+- Tasks: PF-017 (est 25 min, actual 25 min)
+- Notes:
+  - M2 complete. Done: PF-013, PF-014, PF-015 and PF-017, at 100 min estimated and 75 min actual
+    plus PF-013 (not reported). Skipped: PF-012 and PF-016.
+  - Checked by Claude on `4ffb57c`: `./mvnw -B verify` runs `HealthEndpointTest` and
+    `PricingServiceApplicationTests`, with `Tests run: 2, Failures: 0`, and gives `BUILD SUCCESS`.
+  - Traps met along the way:
+    - `mockMvc` was null: the field had no `@Autowired`. `@AutoConfigureMockMvc` only puts the
+      bean in the context.
+    - `jsonPath("$.status").value("up")` is case-sensitive; the value is `UP`.
+    - `perform` throws a checked `Exception`, so the test method needs `throws Exception`.
+    - `status()`, `jsonPath()` and `get()` need `import static`.
+  - `main` is 4 commits ahead of `origin/main` (not pushed).
+- Blockers: none
+
+## 2026-10-14
+- Tasks: PF-018 (est 25 min, actual 25 min)
+- Notes:
+  - Checked by Claude through GitHub's public API. `Dabbin-Giraffe/actions-sandbox` has four runs:
+    - #1 green: `uname -a` and `java -version`.
+    - #2 red with no jobs at all. `actions/setup-java@v6` was a bare top-level line, so the
+      workflow file was invalid.
+    - #3 red at the setup-java step: `uses: actions/setup-java@v6` without `with:` gives
+      "java-version or java-version-file input expected".
+    - #4 green, with `distribution: temurin` and `java-version: '21'`.
+  - The deliberate `exit 1` (step 5) wasn't done; the red runs came from real mistakes. The sandbox
+    repo isn't deleted yet.
+  - Every run carries a notice: `ubuntu-latest` moves from Ubuntu 24.04 to 26.04, rolled out
+    between 2026-10-19 and 2026-11-19 (github.com/actions/runner-images/issues/14748, checked
+    2026-10-14). The runner's preinstalled Java is 17 on both images, so CI must use setup-java
+    for 21. Maven comes from the wrapper, so the image change shouldn't matter for PriceForge.
+    If CI goes red in that window, check this first.
+  - License fix, done by Claude at Shashank's request:
+    - The root POM now declares `url`, the MIT license, the developer (name taken from
+      `LICENSE`) and `scm`.
+    - `child.project.url.inherit.append.path="false"` on `<project>`, and the
+      `child.scm.*.inherit.append.path` attributes on `<scm>`, stop Maven appending the
+      artifactId. The first try put the project attribute on `<url>`, where it has no effect.
+    - Initializr's empty `<developers>` and `<scm>` blocks were removed from
+      `pricing-service/pom.xml`; they were blocking the new values.
+    - The effective POM shows MIT and the GitHub URLs in all three modules, and `./mvnw -B
+      verify` still gives `BUILD SUCCESS`. Not committed.
+- Blockers: none
