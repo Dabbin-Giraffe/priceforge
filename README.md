@@ -1,4 +1,6 @@
 # PriceForge
+[![ci](https://github.com/Dabbin-Giraffe/priceforge/actions/workflows/ci.yml/badge.svg?branch=m8-ci-badge)](https://github.com/Dabbin-Giraffe/priceforge/actions/workflows/ci.yml)
+
 
 PriceForge is a B2B pricing backend that works out the exact price for each quote line from the customer's segment, the product category and the quantity tier, even when several pricing rules apply at once. Each price is calculated the same way every time, down to the cent. It comes with a full breakdown of which rules won and which lost, a plain-English explanation the rep can share with the customer, and a warning if pricing has changed since the quote was made.
 
