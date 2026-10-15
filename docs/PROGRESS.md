@@ -281,3 +281,26 @@ Each entry uses this format:
     sign of an invalid workflow.
   - Only the `push` trigger has run so far; `pull_request` gets its first run in PF-020.
 - Blockers: none
+
+## 2026-10-14
+- Tasks: PF-020 (est 20 min, actual 20 min; follow-up time not counted, at Shashank's request)
+- Notes:
+  - Checked by Claude through GitHub's public API:
+    - Rulesets on `main`: require a pull request; require status check `build`, with branches
+      required to be up to date; block force pushes; block deletion. Shashank reports both bypass
+      lists are empty.
+    - PR #1 (`c751324`) was merged as `c039437`, and PR #2 (`662e249`, the badge fix) as
+      `265f7be`. Both had a green `pull_request` run of `build`.
+    - The README on `main` uses `badge.svg?branch=main`. The badge reads "passing", and `ci` #10
+      on `265f7be` is green.
+  - Edge cases worth remembering:
+    - The first badge came from the "Create status badge" dialog with `?branch=m8-ci-badge`. The
+      fix was pushed 2.5 min after PR #1 merged, so it needed PR #2. A merged PR doesn't pick up
+      later commits.
+    - PR #1 could merge before its own `pull_request` run finished. Required checks attach to the
+      commit, and the `push` run on the same SHA had already passed.
+  - Not explained: PR #2 was 1 commit behind `main` (`behind_by: 1`, per the compare API) with the
+    up-to-date rule on and empty bypass lists, yet it merged without "Update branch". Claude had
+    predicted it would be blocked. The "blocked until it passes" moment wasn't directly observed
+    in either PR.
+- Blockers: none

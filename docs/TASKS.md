@@ -29,7 +29,7 @@
 | PF-017 | First test: the health endpoint says UP | M2 | 25 min | DONE |
 | PF-018 | learn: GitHub Actions spike in a throwaway repo | M8 | 25 min | DONE |
 | PF-019 | Add the CI workflow | M8 | 25 min | DONE |
-| PF-020 | Add the CI badge and protect main | M8 | 20 min | TODO |
+| PF-020 | Add the CI badge and protect main | M8 | 20 min | DONE |
 | PF-021 | Checkpoint 2: skeleton under CI | M8 | 15 min | TODO |
 | PF-022 | design: define the pricing engine's types | M3 | 25 min | TODO |
 | PF-023 | Money rounding helper | M3 | 20 min | TODO |
