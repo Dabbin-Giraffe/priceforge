@@ -304,3 +304,54 @@ Each entry uses this format:
     predicted it would be blocked. The "blocked until it passes" moment wasn't directly observed
     in either PR.
 - Blockers: none
+
+## 2026-10-15
+- Tasks: PF-021 (est 15 min, actual 15 min)
+- Notes:
+  - M8 complete: PF-018 to PF-021, 85 min estimated and 85 min actual.
+  - Checked by Claude:
+    - local `./mvnw -B verify` gives `Tests run: 2, Failures: 0` and `BUILD SUCCESS`
+    - `ci` #10 on `main` (`265f7be`) is green
+    - `m3-pricing` is pushed with `2cf33e8 docs: log PF-020` and `a953040 docs: checkpoint 2 -
+      build and run instructions`, and `ci` #11 on it is green
+  - `m3-pricing` was first cut from `m8-ci-badge`, because local `main` hadn't been pulled. It was
+    rebased onto `origin/main` before the push, so it's 0 commits behind `main`.
+  - SPEC check:
+    - F-12 (health endpoints for both services) is half done: pricing-service only.
+    - AC-9 is partly met: one command, CI on push and PR, and a green `main`. Still missing:
+      quote-service and Testcontainers tests.
+- Blockers: none
+
+## 2026-10-15
+- Tasks: PF-022 (est 25 min, actual 25 min)
+- Notes:
+  - Both Done-when checks passed on Shashank's version. At his request, Claude then corrected
+    three things that disagreed with the docs:
+    - `CandidateRule.priority` was a `String`. ARCHITECTURE §6.1 says `integer`, and as strings
+      `"10"` sorts before `"9"`. Now `int`.
+    - The SUPERSEDED step dropped `percentOff`, which ARCHITECTURE §8.3 shows (`"percentOff":
+      4.00`). The convenience constructors took `type` as an argument, so a CAP step with
+      superseded fields would compile. They're now the factories `Step.applied`,
+      `Step.superseded` and `Step.cap`, which set the type themselves.
+    - `Pricer.price` returned `void` and never threw. `throws UnsupportedOperationException` on
+      the signature throws nothing, so the method returned silently. It now returns
+      `ResultPrice` and throws.
+  - After the fixes, `./mvnw -B -pl pricing-service -am verify` gives `BUILD SUCCESS`, and the
+    Spring/JPA grep finds nothing. Not committed.
+  - Open, Shashank's call: the types sit in `engine.models`, while the card's Files say
+    `engine/*.java`.
+- Blockers: none
+
+## 2026-10-15
+- Tasks: PF-023 (est 20 min, actual not reported)
+- Notes:
+  - Shashank wrote `MoneyRounder.roundOff` (`setScale(2, HALF_UP)`, with a null guard) and moved
+    it, along with the PF-022 types, into the flat `engine` package. At his request, Claude filled
+    in the `@CsvSource` rows from SPEC §4.2 and added the step 3 test: `12.0` vs `12.00` is
+    `isNotEqualTo` but `isEqualByComparingTo`.
+  - Checked by Claude: `./mvnw -B -pl pricing-service -am verify` gives `MoneyRounderTest`
+    `Tests run: 6`, 8 tests in total, and `BUILD SUCCESS`.
+  - The parameterized test uses `isEqualByComparingTo`, so it wouldn't catch a missing
+    `setScale(2)` (a `12` vs `12.00` row would pass). Left as Shashank's choice.
+  - PF-022 and PF-023 are both still uncommitted.
+- Blockers: none

@@ -30,9 +30,9 @@
 | PF-018 | learn: GitHub Actions spike in a throwaway repo | M8 | 25 min | DONE |
 | PF-019 | Add the CI workflow | M8 | 25 min | DONE |
 | PF-020 | Add the CI badge and protect main | M8 | 20 min | DONE |
-| PF-021 | Checkpoint 2: skeleton under CI | M8 | 15 min | TODO |
-| PF-022 | design: define the pricing engine's types | M3 | 25 min | TODO |
-| PF-023 | Money rounding helper | M3 | 20 min | TODO |
+| PF-021 | Checkpoint 2: skeleton under CI | M8 | 15 min | DONE |
+| PF-022 | design: define the pricing engine's types | M3 | 25 min | DONE |
+| PF-023 | Money rounding helper | M3 | 20 min | DONE |
 | PF-024 | Rule matching | M3 | 25 min | TODO |
 | PF-025 | Exclusive groups | M3 | 30 min | TODO |
 | PF-026 | Apply rules in priority order (Examples A and D) | M3 | 30 min | TODO |
