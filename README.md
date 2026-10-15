@@ -13,11 +13,19 @@ PriceForge is a B2B pricing backend that works out the exact price for each quot
 
 ## How to Run
 
+### Starting the database
+
 1. Copy .env.example contents and paste into local .env file using command `cp .env.example .env`
 2. Add your secrets to corresponding variables in the .env file
 3. Run the command in terminal `docker compose up -d`
 
 Deleting all local data : `docker compose down -v`
+
+### Starting the pricing service
+
+1. Building the jar and run tests : `./mvnw -B verify`
+2. Run the jar, Application keeps running : `java -jar pricing-service/target/pricing-service-*.jar`
+3. Health check command in a different terminal : `curl localhost:8081/actuator/health`
 
 ---
 ## Design Decisions
